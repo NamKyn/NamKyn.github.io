@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Font Awesome Icon CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        transition: all 0.5s ease;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    ul {
+        margin-left: 2rem;
+    }
+
+    ul li,
+    a {
+        font-size: 1.2em;
+    }
+
+    .container {
+        background: #212121;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #presentation-area {
+        width: 1000px;
+        height: 500px;
+        position: relative;
+        background: purple;
+    }
+
+    /* Styling all three sections */
+    #presentation-area .presentation {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #ffffff;
+        position: relative;
+    }
+
+    #presentation-area .counter {
+        position: absolute;
+        bottom: -30px;
+        left: 0;
+        color: #b6b6b6;
+    }
+
+    #presentation-area .navigation {
+        position: absolute;
+        bottom: -45px;
+        right: 0;
+    }
+
+    /* On full screen mode */
+    #presentation-area.full-screen {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #presentation-area.full-screen .counter {
+        bottom: 15px;
+        left: 15px;
+    }
+
+    #presentation-area.full-screen .navigation {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    #presentation-area.full-screen .navigation .btn:hover {
+        background: #201e1e;
+        color: #ffffff;
+    }
+
+    #presentation-area.full-screen .navigation .btn-screen:hover {
+        background: #201e1e;
+    }
+
+    /* End full screen mode */
+
+    /* Buttons */
+    .navigation button {
+        width: 30px;
+        height: 30px;
+        border: none;
+        outline: none;
+        margin-left: 0.5rem;
+        font-size: 1.5rem;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .navigation .btn {
+        background: #464646;
+        color: #ffffff;
+        border-radius: 0.25rem;
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    .navigation .btn.show {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+
+    .navigation .btn-screen {
+        background: transparent;
+        color: #b6b6b6;
+        visibility: hidden;
+    }
+
+    .btn-screen.show {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+
+    .btn-screen.hover {
+        color: #ffffff;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* End Buttons */
+
+    /* content */
+    .presentation .content {
+        padding: 2em;
+        width: 100%;
+        height: calc(100% - 100px);
+        z-index: 11;
+    }
+
+    .presentation .content.grid {
+        display: grid;
+    }
+
+    .presentation .content.grid.center {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .content .title {
+        font-size: 3em;
+        color: purple;
+    }
+
+    .content .sub-title {
+        font-size: 2.5em;
+        color: blue;
+    }
+
+    .content p {
+        font-size: 1.25em;
+        margin-bottom: 1rem;
+    }
+
+    /* End Content Stylesheet */
+
+    /* Slide */
+    .presentation .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        opacity: 0;
+        transform: scale(0);
+        visibility: none;
+    }
+
+    .slide.show {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+
+    .slide .heading {
+        padding: 2rem;
+        background: purple;
+        font-size: 2em;
+        font-weight: bold;
+        color: #ffffff;
+    }
+    #prem {
+	    padding: 1rem;
+	    margin-left: -7vw;
+	    margin-right: -7vw;
+	    background: green;
+	    font-size: 1.5rem;
+	    color: white;
+	    overflow: auto;
+    }
+    #prem pre {
+	    margin-left: -3vw;
+	    padding: 1rem;
+    }
+    a {
+	    color: green;
+	    text-align: center;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div id="presentation-area">
+            <section class="presentation">
+                <div class="slide show">
+                    <div class="heading">
+                        A Vehicular Mechanism
+                    </div>
+                    <div class="content grid center">
+                        <h3 class="title">
+                            What It Does 
+			</h3>
+			<p class="sub-title"> Does not create new products but distributes them hence a "vehicle" </p>
+                    </div>
+                </div>
+
+		<div class="slide">                                <div class="heading">                              Prime Numbers                                   </div>
+			<div class="content grid center">
+				<a href="http://178.62.110.131/indea.html">Calculate Primes</a>
+				<img src="prime.png" style="width:80vw;height:70vh;"/>
+
+			<footer>&copy Creative Commons License </footer>
+			</div>                                     </div>
+
+
+                <div class="slide">
+                    <div class="heading">
+                        Overview
+                    </div>
+                    <div class="content grid center">
+                        <p class="sub-title">
+                            Basic Concepts
+                        </p>
+			<p><b>Relies on prime number properties especially their variegated gaps</b></p>
+			<p><b>Applicable in distributing both credit and commodity</b></p>
+			<p><b>Pragmatizes alternatives to profit and interest</b></p>
+			<p><b>Incentivizes adoption of automation in most production while constituting distribution as a fully fledged economic activity</b></p>
+			<p><b>&copy</b><a href="">kintennam@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="heading">
+                        How It Works
+                    </div>
+                    <div class="content">
+			    <p> Within distribution, a major issue in socio-economic philosophy, commodities, credit, inventory, rewards and any other that can be expressed in quantity, the mechanism works. The criterion of only two factors to qualify as prime makes scarcity of the same as we move up the number line thus, one notices that there are 15 primes for the first 50 counting numbers and 10 for the next 50. This tendency continues but perhaps not in a linear fashion. The effect becomes that as we move one prime to another, the distance along the number line between two primes increases. This distance in units of counting numbers is called a prime gap.</p> 
+			    <p>For example the distance between the 10th and 9th prime is 29-23=6 while that between the 5th and 4th prime is 11-7=4. These variegated and somewhat bulging gaps are the cornerstone of applicability of prime numbers in distribution</p>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="heading">
+                        Basis
+                    </div>
+                    <div class="content">
+			    <p class="sub-title"> The whole is greater than the sum of its parts </p>
+			    <div id="prem">
+				    <pre>Prime(15) = 47</pre>
+				    <pre>Prime(5) + Prime(10) = 11 + 29 = 40 </pre>
+				    <pre> 47 - 40 = 7 </pre>
+			    </div>
+			    <br/><br/>
+			    <p> Since 7 is greater than 0, with primes atleast, the whole is greater than the sum of its parts. If we were doing pure mathematics, we would take this as a conjecture, that is, an incomplete solution until we have tried out all the ordinals of primes in reality or abstraction; but here we are simply applying mathematics.
+			    </p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="heading">
+                        Application
+                    </div>
+		    <figure>
+		    <img src="axis.png" style="margin-left:10vw;margin-bottom:-10vh;margin-top:-2.5vh;width:70vw;height:30vh"/>
+		    </figure>
+                    <div class="content">
+			    <p><b>Nominal->Quantity || Ordinal->Quality </b></p>
+                        <p>Someone with a worth of 15 ie 47 items can distribute to two other with respective worth of 5 and 10 giving them 11 and 29 items respectively whilst he is left with a balance of 7 items. This balance he could dispose off at a worth of 4. Yes, a balance, that is the return of distribution, not exactly a profit since there is no mark up, neither an interest since there is no added proportion. It is an automatic distributive mechanism which can be generalized into an economic activity. Well, calculating, the return from the transaction is about 26%(4/15) which at par or even above prevalent return on investment. Simply put, it is an alternative to appropriation such that if we could relegate the latter to automatons, we could pursue the former in equivalent or much more satisfaction.
+			</p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="heading">
+                        Example (Simulation)
+                    </div>
+		    <div>
+			    <img src="table.png" style="margin-left:5vw;width:90vw;height:70vh;"/>
+			    <footer> &copy Generated from code by author, then snapshot </footer>
+		    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="heading">
+                        Conclusion
+                    </div>
+		    <div class="content">
+			    <p>While this is a breakthrough, some issues lurk and are bleak such as: </p>
+			    <ul><li>Implementation in reality and gauging the sophiscation of the necessary tools</li>
+				    <li>We stand and base on yet to prove or disprove mathematical statements and we call upon mathematicians to dwell upon the conjecture</li>
+				    <li>Our society has ages rooted in profit and interest no matter the economic system and as such, adapting to alternatives needs more sensitization and subsequently hard work </li></ul>
+		    </div>
+                </div>
+            </section>
+
+            <section class="counter">
+                1 of 6
+            </section>
+
+            <section class="navigation">
+                <button id="full-screen" class="btn-screen show">
+                    <i class="fas fa-expand"></i>
+                </button>
+
+                <button id="small-screen" class="btn-screen">
+                    <i class="fas fa-compress"></i>
+                </button>
+
+                <button id="left-btn" class="btn">
+                    <i class="fas fa-solid fa-caret-left"></i>
+                </button>
+
+                <button id="right-btn" class="btn">
+                    <i class="fa-solid fa-caret-right"></i>
+                </button>
+            </section>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // get elements
+        let presentation = document.querySelector(".presentation");
+        let slides = document.querySelectorAll(".slide");
+        let currentSlide = document.querySelector(".slide.show");
+
+        var slideNumber = document.querySelector(".counter");
+        var toLeftBtn = document.querySelector("#left-btn");
+        var toRightBtn = document.querySelector("#right-btn");
+
+        let presentationController = document.querySelector("#presentation-area");
+        var toFullScreenBtn = document.querySelector("#full-screen");
+        var toSmallScreenBtn = document.querySelector("#small-screen");
+
+        // initailize defualt values
+        var screenStatus = 0;
+        var currentSlideNo = 1;
+        var totalSides = 0;
+
+        // run init script
+        init();
+
+        function init() {
+            getCurrentSlideNo();
+            totalSides = slides.length;
+            setSlideNo();
+            hideLeftButton();
+            hideRightButton();
+        }
+
+        // handle clicks on left and right icons
+        toLeftBtn.addEventListener("click", moveToLeftSlide);
+        toRightBtn.addEventListener("click", moveToRightSlide);
+
+        // handle full screen and small screen modes
+        toFullScreenBtn.addEventListener("click", fullScreenMode);
+        toSmallScreenBtn.addEventListener("click", smallScreenMode);
+
+        // hide left button at first page
+        function hideLeftButton() {
+            if (currentSlideNo == 1) {
+                toLeftBtn.classList.remove("show");
+            } else {
+                toLeftBtn.classList.add("show");
+            }
+        }
+
+        // hide right button at last page
+        function hideRightButton() {
+            if (currentSlideNo === totalSides) {
+                toRightBtn.classList.remove("show");
+            } else {
+                toRightBtn.classList.add("show");
+            }
+        }
+
+        // moves to left slide
+        function moveToLeftSlide() {
+            var tempSlide = currentSlide;
+            currentSlide = currentSlide.previousElementSibling;
+            tempSlide.classList.remove("show");
+            currentSlide.classList.add("show");
+
+            init();
+        }
+
+        // moves to right slide
+        function moveToRightSlide() {
+            var tempSlide = currentSlide;
+            currentSlide = currentSlide.nextElementSibling;
+            tempSlide.classList.remove("show");
+            currentSlide.classList.add("show");
+
+            init();
+        }
+
+        // get current slide
+        function getCurrentSlideNo() {
+            let counter = 0;
+
+            slides.forEach((slide, i) => {
+                counter++;
+
+                if (slide.classList.contains("show")) {
+                    currentSlideNo = counter;
+                }
+            });
+        }
+
+        // go full screen
+        function fullScreenMode() {
+            presentationController.classList.add("full-screen");
+            toFullScreenBtn.classList.remove("show");
+            toSmallScreenBtn.classList.add("show");
+
+            screenStatus = 1;
+        }
+
+        // switch to small screen
+        function smallScreenMode() {
+            presentationController.classList.remove("full-screen");
+            toFullScreenBtn.classList.add("show");
+            toSmallScreenBtn.classList.remove("show");
+
+            screenStatus = 0;
+        }
+
+        // update counter
+        function setSlideNo() {
+            slideNumber.innerText = `${currentSlideNo} of ${totalSides}`;
+        }
+    </script>
+</body>
+
+</html>
